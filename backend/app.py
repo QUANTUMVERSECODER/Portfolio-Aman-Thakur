@@ -34,6 +34,10 @@ Your tone is professional, technical, and slightly 'agentic' (cyberpunk/terminal
 Keep responses concise (1-3 sentences) suitable for a small terminal UI.
 """
 
+@app.route("/")
+def home():
+    return "Portfolio Backend is Live 🚀"
+
 @app.route('/ai-chat', methods=['POST'])
 def ai_chat():
     if not client:
