@@ -919,12 +919,39 @@ const sentLabel = document.getElementById('sentimentLabel');
 if (sentInput) {
   let debounceTimeout;
   sentInput.addEventListener('input', (e) => {
-    negative.forEach(w => { if (val.includes(w)) score -= 10; });
-    
-    score = Math.max(0, Math.min(100, score));
-    sentFill.style.width = `${score}%`;
-    sentFill.style.background = score > 60 ? '#00c851' : (score < 40 ? '#ff4444' : 'var(--red)');
-    sentLabel.innerText = `SCORE: ${score}%`;
+    const text = e.target.value.trim();
+    if (!text) {
+      sentFill.style.width = '50%';
+      sentLabel.innerText = 'SCORE: 50%';
+      return;
+    }
+
+    clearTimeout(debounceTimeout);
+    debounceTimeout = setTimeout(() => {
+      sentLabel.innerText = "AGENT_ANALYZING...";
+      
+      fetch('http://127.0.0.1:5000/ai-sentiment', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ text: text })
+      })
+      .then(res => res.json())
+      .then(data => {
+        const score = data.score || 50;
+        const label = data.label || "NEUTRAL";
+        
+        const color = score > 60 ? '#00c851' : (score < 40 ? '#ff4444' : 'var(--red)');
+        sentFill.style.width = `${score}%`;
+        sentLabel.innerHTML = `${label}: <span style="color:${color}">${score}%</span>`;
+        
+        // Dynamic color shifting
+        sentFill.style.background = color;
+      })
+      .catch(err => {
+        console.error("Sentiment Error:", err);
+        sentLabel.innerText = "Neural connection failed.";
+      });
+    }, 800);
   });
 }
 
