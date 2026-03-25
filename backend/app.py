@@ -129,5 +129,9 @@ def send_email():
         return jsonify({"status": "error", "message": str(e)}), 500
 
 if __name__ == '__main__':
-    print("Agent Backend Active on port 5000...")
-    app.run(port=5000, debug=True)
+    # Use dynamic port for Render, fallback to 5000 for local dev
+    port = int(os.environ.get("PORT", 5000))
+    print(f"Agent Backend Active on port {port}...")
+    
+    # host='0.0.0.0' is required for cloud deployment visibility
+    app.run(host='0.0.0.0', port=port, debug=False)
