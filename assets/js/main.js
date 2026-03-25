@@ -337,7 +337,7 @@ function handleSubmit(e) {
       resetBtn(btn, "UPLINK_TIMEOUT_ERR");
     }, 10000); // 10 second timeout
 
-    fetch('http://127.0.0.1:5000/send-api', {
+    fetch('https://portfolio-aman-thakur.onrender.com/send-api', {
       method: 'POST',
       signal: controller.signal,
       headers: { 
@@ -514,7 +514,7 @@ function getAIResponse(query) {
   const lastLine = aiChatBody.lastElementChild;
   if (lastLine) lastLine.innerHTML += ' <span style="color:var(--red);opacity:0.5">[THINKING...]</span>';
 
-  fetch('http://127.0.0.1:5000/ai-chat', {
+  fetch('https://portfolio-aman-thakur.onrender.com/ai-chat', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ query: query })
@@ -862,7 +862,7 @@ function updateDashboard() {
   const load    = document.getElementById('loadVal');
 
   // Backend Connectivity Check
-  fetch('http://localhost:5000/send-api', { method: 'OPTIONS' })
+  fetch('https://portfolio-aman-thakur.onrender.com/send-api', { method: 'OPTIONS' })
     .then(() => {
       if (load) {
          load.innerText = "UPLINK_STABLE";
@@ -930,7 +930,7 @@ if (sentInput) {
     debounceTimeout = setTimeout(() => {
       sentLabel.innerText = "AGENT_ANALYZING...";
       
-      fetch('http://127.0.0.1:5000/ai-sentiment', {
+      fetch('https://portfolio-aman-thakur.onrender.com/ai-sentiment', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ text: text })
