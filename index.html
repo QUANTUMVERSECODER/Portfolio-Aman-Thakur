@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aman Thakur — AI/ML Engineer & Data Scientist</title>
+  <meta name="description" content="Portfolio of Aman Thakur — B.Tech student specialising in Machine Learning, AI, Local LLMs and full-stack development.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Serif+Display:ital@0;1&family=JetBrains+Mono:wght@300;400;500&family=Crimson+Pro:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.160.0/three.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.17.0/dist/tf.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+</head>
+<body>
+
+  <!-- CUSTOM CURSOR -->
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+
+  <!-- SCROLL PROGRESS BAR -->
+  <div class="scroll-indicator">
+    <div class="scroll-progress" id="scrollProgress"></div>
+  </div>
+
+  <!-- ============================================================
+       NAVIGATION
+       ============================================================ -->
+  <nav>
+    <a href="#hero" class="nav-logo">Aman.DEV</a>
+    <ul class="nav-links">
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#resume">Resume</a></li>
+      <li><a href="#certifications">Certifications</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="nav-controls">
+      <div class="audio-toggle" id="audioToggle" title="Toggle UI Sounds (Muted by default)">
+        <span class="audio-icon">🔇</span>
+      </div>
+      <div class="theme-toggle" id="themeToggle" title="Toggle light / dark theme"></div>
+    </div>
+  </nav>
+
+  <!-- ============================================================
+       HERO
+       ============================================================ -->
+  <section id="hero">
+    <canvas id="hero-canvas"></canvas>
+    <div class="hero-bg-text">AI</div>
+
+    <div class="hero-content">
+      <div class="hero-badge">Open to Opportunities</div>
+      
+      <!-- INTENT ENGINE OVERLAY -->
+      <div class="intent-engine">
+        <div class="intent-label">[AGENT] INTENT_ENGINE :: ACTIVE</div>
+        <div class="intent-prediction">Inferred Intent: <span id="intentVal">IDLE</span></div>
+        <div class="intent-confidence">Confidence: <span id="intentConf">0%</span></div>
+      </div>
+
+      <h1 class="hero-name">
+        Aman<br>
+        <span>Thakur</span>
+      </h1>
+
+      <p class="hero-role">AI/ML Engineer &amp; Data Scientist</p>
+
+      <p class="hero-desc" id="typewriter">
+        B.Tech student building intelligent systems — from local LLM deployments to
+        full-stack AI-integrated apps. I turn ideas into deployed products.
+      </p>
+
+        <div class="hero-actions reveal">
+          <a href="#projects" class="hero-btn primary magnetic cursor-hover">VIEW PROJECTS</a>
+          <a href="#contact" class="hero-btn secondary magnetic cursor-hover">CONTACT ME</a>
+        </div>
+
+      <div class="hero-stats">
+        <div class="stat">
+          <div class="stat-num">3rd</div>
+          <div class="stat-label">Year B.Tech</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">3</div>
+          <div class="stat-label">Projects</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">5</div>
+          <div class="stat-label">Certifications</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- HERO PHOTO -->
+    <div class="hero-visual">
+      <div class="photo-frame">
+        <div class="photo-placeholder">
+          <img src="assets/img/My pic.jpeg" alt="Aman Thakur">
+            <defs>
+              <linearGradient id="bgGrad" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%"   stop-color="#1a0a0c"/>
+                <stop offset="100%" stop-color="#0d0d0d"/>
+              </linearGradient>
+              <linearGradient id="skinGrad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%"   stop-color="#c8956c"/>
+                <stop offset="100%" stop-color="#a0714a"/>
+              </linearGradient>
+              <radialGradient id="glowGrad" cx="50%" cy="30%" r="50%">
+                <stop offset="0%"   stop-color="#e8192c" stop-opacity="0.12"/>
+                <stop offset="100%" stop-color="transparent"/>
+              </radialGradient>
+              <clipPath id="photoClip"><rect width="440" height="587"/></clipPath>
+            </defs>
+            <g clip-path="url(#photoClip)">
+              <rect width="440" height="587" fill="url(#bgGrad)"/>
+              <rect width="440" height="587" fill="url(#glowGrad)"/>
+              <line x1="0"   y1="200" x2="440" y2="200" stroke="#e8192c" stroke-width="0.3" stroke-opacity="0.2"/>
+              <line x1="0"   y1="400" x2="440" y2="400" stroke="#e8192c" stroke-width="0.3" stroke-opacity="0.2"/>
+              <line x1="110" y1="0"   x2="110" y2="587" stroke="#e8192c" stroke-width="0.3" stroke-opacity="0.2"/>
+              <line x1="330" y1="0"   x2="330" y2="587" stroke="#e8192c" stroke-width="0.3" stroke-opacity="0.2"/>
+              <circle cx="50"  cy="80"  r="2"   fill="#e8192c" opacity="0.5"/>
+              <circle cx="380" cy="120" r="3"   fill="#e8192c" opacity="0.3"/>
+              <circle cx="60"  cy="300" r="1.5" fill="#e8192c" opacity="0.4"/>
+              <circle cx="400" cy="350" r="2"   fill="#e8192c" opacity="0.35"/>
+              <circle cx="30"  cy="450" r="1"   fill="#e8192c" opacity="0.5"/>
+              <circle cx="410" cy="480" r="2.5" fill="#e8192c" opacity="0.25"/>
+              <text x="20"  y="180" font-family="monospace" font-size="9" fill="#e8192c" opacity="0.35">model.fit(X_train)</text>
+              <text x="300" y="500" font-family="monospace" font-size="8" fill="#e8192c" opacity="0.3">llm.run(local=True)</text>
+              <text x="22"  y="520" font-family="monospace" font-size="8" fill="#e8192c" opacity="0.3">agent.execute()</text>
+              <rect x="0" y="480" width="440" height="107" fill="url(#bgGrad)" opacity="0.4"/>
+            </g>
+          </svg>
+        </div>
+        <div class="photo-tag">AI Builder</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- ============================================================
+       PROJECTS
+       ============================================================ -->
+  <section id="projects">
+
+    <div class="section-header reveal">
+      <div>
+        <span class="section-num">01 / WORK</span>
+        <h2 class="section-title">Featured Projects</h2>
+      </div>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="projects-grid">
+
+      <!-- Featured Project 1: NEXUS AGENT (PRIORITY) -->
+      <div class="project-card reveal" id="nexus-project">
+        <span class="project-type">★ Current Focus · AI Agents · In Progress</span>
+        <h3 class="project-title">Nexus Agent — Multi-Agent AI System</h3>
+        <p class="project-desc">An autonomous multi-agent framework built on local LLMs. Agents collaborate to plan, research, and execute complex tasks — no cloud dependency, fully private. High potential for production deployment.</p>
+        <div class="project-tags">
+          <span class="tag">Python</span>
+          <span class="tag">Local LLMs</span>
+          <span class="tag">AI Agents</span>
+          <span class="tag">In Progress 🚧</span>
+        </div>
+        <div class="project-actions" style="margin-top:20px;display:flex;gap:12px">
+          <a href="#" class="project-link">View Project →</a>
+          <button class="btn-arch" onclick="toggleArch('nexus')">Inside the Model</button>
+        </div>
+        <!-- Arch for Nexus -->
+        <div class="arch-modal" id="arch-nexus">
+           <div class="arch-modal-content">
+             <h4 style="color:var(--red);font-family:'JetBrains Mono';font-size:12px;margin-bottom:20px">NEXUS_AGENT :: ARCHITECTURE</h4>
+             <svg viewBox="0 0 300 150" class="arch-svg-large">
+               <circle cx="50"  cy="75" r="30" class="arch-node-circle" />
+               <text x="50"   y="80" text-anchor="middle" font-size="8" fill="white">PLANNER</text>
+               <circle cx="150" cy="40" r="25" class="arch-node-circle" />
+               <text x="150"  y="45" text-anchor="middle" font-size="8" fill="white">RESEARCH</text>
+               <circle cx="150" cy="110" r="25" class="arch-node-circle" />
+               <text x="150"  y="115" text-anchor="middle" font-size="8" fill="white">CODER</text>
+               <circle cx="250" cy="75" r="30" class="arch-node-circle" />
+               <text x="250"  y="80" text-anchor="middle" font-size="8" fill="white">OUTPUT</text>
+               <path d="M80 75 L125 40 M80 75 L125 110 M175 40 L220 75 M175 110 L220 75" class="arch-link" />
+             </svg>
+             <button class="btn-primary" onclick="toggleArch('nexus')" style="margin-top:20px">EXIT_VIEW</button>
+           </div>
+        </div>
+      </div>
+
+      <!-- Featured Project 2: LIFEOS -->
+      <div class="project-card reveal">
+        <span class="project-type">AI OS · Deployed</span>
+        <h3 class="project-title">LifeOS — Personal AI Operating System</h3>
+        <p class="project-desc">
+          A fully deployed personal productivity system powered by AI. Integrates task management,
+          goal tracking, journaling, and habit loops into a unified interface. Built end-to-end
+          and shipped to real users.
+        </p>
+        <div class="project-tags">
+          <span class="tag">Python</span>
+          <span class="tag">AI Integration</span>
+          <span class="tag">Web App</span>
+          <span class="tag">Deployed ✓</span>
+        </div>
+        <div class="project-actions" style="margin-top:20px;display:flex;gap:12px">
+          <a href= https://lifeos-clean.vercel.app class="project-link">View Project →</a>
+          <button class="btn-arch" onclick="toggleArch('lifeos')">Inside the Model</button>
+        </div>
+      </div>
+
+      <!-- Featured Project 3: PASS PRO -->
+      <div class="project-card reveal">
+        <span class="project-type">Security · Utility</span>
+        <h3 class="project-title">Pass Pro — Password Intelligence Tool</h3>
+        <p class="project-desc">A smart password generator and strength analyzer. Evaluates entropy, common patterns, and breach likelihood. Clean UI with real-time feedback — practical security tooling done right.</p>
+        <div class="project-tags">
+          <span class="tag">Python</span>
+          <span class="tag">Security</span>
+          <span class="tag">Data Analysis</span>
+        </div>
+        <div class="pass-pro-demo">
+          <input type="text" id="passInput" class="pass-input" placeholder="Test password strength...">
+          <div class="pass-strength-bar"><div id="passStrengthFill"></div></div>
+          <div class="pass-label" id="passLabel">Strength: <span>NULL</span></div>
+        </div>
+        <a href= https://pass-pro-three.vercel.app class="project-link">View Project →</a>
+      </div>
+
+      <!-- Featured Project 4: AI LABORATORY (LIVE DEMO) -->
+      <div class="project-card reveal" style="grid-column: 1 / -1; background: var(--bg3); border: 2px solid var(--red-glow); margin-top: 20px;">
+        <div class="project-info">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--red);margin-bottom:10px">03_EXPERIMENTAL_LAB</div>
+          <h3 class="project-title">AI Content Sentiment Engine</h3>
+          <p class="project-desc">
+            A real-time sentiment analysis demonstration using lightweight natural language processing. Type anything below to see the agent's interpretation of your tone.
+          </p>
+          <div class="sentiment-playground">
+            <input type="text" id="sentInput" class="sentiment-input" placeholder="Type your thoughts here (e.g., 'This portfolio is amazing')...">
+            <div class="sentiment-bar-wrap">
+              <div id="sentimentFill"></div>
+              <div class="sentiment-label" id="sentimentLabel">SCORE: 50%</div>
+            </div>
+          </div>
+          <div class="project-tags" style="margin-top:20px">
+            <span class="tag">NLP</span>
+            <span class="tag">Real-time Data</span>
+            <span class="tag">TFJS Pattern</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- ============================================================
+       ABOUT
+       ============================================================ -->
+  <section id="about">
+
+    <div class="section-header reveal">
+      <div>
+        <span class="section-num">02 / ABOUT</span>
+        <h2 class="section-title">About Me</h2>
+      </div>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="about-grid">
+      <!-- Left: skills -->
+      <div class="about-visual">
+
+        <div class="about-card reveal">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--red);margin-bottom:20px">Cognitive Map</div>
+          <div class="radar-chart-wrap">
+            <canvas id="radarChart"></canvas>
+          </div>
+          
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--red);margin-top:30px;margin-bottom:20px">Technical Proficiency</div>
+
+          <div class="skill-bar-wrap">
+            <div class="skill-bar-label">
+              <span class="skill-bar-name">Python</span>
+              <span class="skill-bar-pct">85%</span>
+            </div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" style="width:85%"></div></div>
+          </div>
+
+          <div class="skill-bar-wrap">
+            <div class="skill-bar-label">
+              <span class="skill-bar-name">Machine Learning</span>
+              <span class="skill-bar-pct">75%</span>
+            </div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" style="width:75%"></div></div>
+          </div>
+
+          <div class="skill-bar-wrap">
+            <div class="skill-bar-label">
+              <span class="skill-bar-name">Data Analysis &amp; Viz</span>
+              <span class="skill-bar-pct">80%</span>
+            </div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" style="width:80%"></div></div>
+          </div>
+
+          <div class="skill-bar-wrap">
+            <div class="skill-bar-label">
+              <span class="skill-bar-name">Local LLMs / GenAI</span>
+              <span class="skill-bar-pct">78%</span>
+            </div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" style="width:78%"></div></div>
+          </div>
+
+          <div class="skill-bar-wrap">
+            <div class="skill-bar-label">
+              <span class="skill-bar-name">SQL</span>
+              <span class="skill-bar-pct">72%</span>
+            </div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" style="width:72%"></div></div>
+          </div>
+
+          <div class="skill-bar-wrap">
+            <div class="skill-bar-label">
+              <span class="skill-bar-name">Java / C</span>
+              <span class="skill-bar-pct">65%</span>
+            </div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" style="width:65%"></div></div>
+          </div>
+        </div>
+
+        <div class="about-card reveal" style="margin-top:2px">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--red);margin-bottom:16px">Core Tools &amp; Tech</div>
+          <div style="display:flex;flex-wrap:wrap;gap:8px">
+            <span class="tag">Python</span>
+            <span class="tag">Java</span>
+            <span class="tag">C</span>
+            <span class="tag">SQL</span>
+            <span class="tag">XML</span>
+            <span class="tag">scikit-learn</span>
+            <span class="tag">Local LLMs</span>
+            <span class="tag">AI Agents</span>
+            <span class="tag">Web Apps</span>
+            <span class="tag">Mobile Apps</span>
+            <span class="tag">Data Viz</span>
+            <span class="tag">Git</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Right: bio + timeline -->
+      <div class="about-text">
+        <h3 class="reveal">Who I Am</h3>
+        <p class="reveal">I'm a 3rd-year B.Tech student deeply passionate about AI, machine learning, and building things that actually work. My focus sits at the intersection of local LLMs, data science, and full-stack development — I believe the future of AI is private, local, and accessible.</p>
+        <p class="reveal">I don't just study AI — I build with it. LifeOS is deployed and live. Nexus Agent is pushing the boundaries of what autonomous local LLM systems can do. I care about shipping real products, not just academic exercises.</p>
+
+        <h3 class="reveal">What I'm Building Toward</h3>
+        <div class="timeline reveal">
+          <div class="timeline-item">
+            <div class="timeline-date">Now</div>
+            <div class="timeline-role">B.Tech (3rd Year)</div>
+            <div class="timeline-company">Computer Science · AI/ML Focus</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-date">Active</div>
+            <div class="timeline-role">Independent Builder</div>
+            <div class="timeline-company">LifeOS · Nexus Agent · Pass Pro</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-date">Next</div>
+            <div class="timeline-role">AI/ML Engineer Role</div>
+            <div class="timeline-company">Open to Internships &amp; Opportunities</div>
+          </div>
+        </div>
+
+        <h3 class="reveal">Interests &amp; Direction</h3>
+        <div class="timeline reveal">
+          <div class="timeline-item">
+            <div class="timeline-date">🔥 Hot</div>
+            <div class="timeline-role">Local LLMs &amp; Private AI</div>
+            <div class="timeline-company">Ollama · LLaMA · Mistral · Phi</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-date">🤖</div>
+            <div class="timeline-role">AI Agents &amp; Automation</div>
+            <div class="timeline-company">Multi-agent systems · Task execution</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-date">📱</div>
+            <div class="timeline-role">Full-Stack AI Apps</div>
+            <div class="timeline-company">Web · Mobile · AI-integrated systems</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- ============================================================
+       RESUME
+       ============================================================ -->
+  <section id="resume">
+
+    <div class="section-header reveal">
+      <div>
+        <span class="section-num">03 / RESUME</span>
+        <h2 class="section-title">Curriculum Vitae</h2>
+      </div>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="resume-viewer reveal">
+      <div class="resume-toolbar">
+        <span class="resume-title">resume_aman_thakur_2025.pdf</span>
+        <div class="resume-actions" style="display: flex; gap: 12px; justify-content: flex-end; margin-bottom: 20px;">
+          
+          <a href="assets/Aman_Thakur_CV.pdf" download="Aman_Thakur_CV.pdf" class="hero-btn secondary magnetic cursor-hover" style="padding: 10px 24px; font-size: 10px; text-decoration: none;">DOWNLOAD CV</a>
+        </div>
+      </div>
+
+      <div class="resume-content" id="resumeContent">
+        <div class="resume-doc" style="padding: 0; background: var(--bg2); border: 1px solid var(--border); overflow: hidden; height: 1100px;">
+          <embed src="assets/Aman_Thakur_CV.pdf#toolbar=0&navpanes=0&scrollbar=0" type="application/pdf" width="100%" height="100%" style="border: none;" />
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- ============================================================
+       CERTIFICATIONS
+       ============================================================ -->
+  <section id="certifications">
+
+    <div class="section-header reveal">
+      <div>
+        <span class="section-num">04 / CREDENTIALS</span>
+        <h2 class="section-title">Certifications</h2>
+      </div>
+      <div class="section-line"></div>
+    </div>
+
+    <!-- Stats -->
+    <div class="cert-stats-row reveal">
+      <div class="cert-stat-box">
+        <span class="cert-stat-num">5</span>
+        <span class="cert-stat-label">Certifications</span>
+      </div>
+      <div class="cert-stat-box">
+        <span class="cert-stat-num">4</span>
+        <span class="cert-stat-label">Platforms</span>
+      </div>
+      <div class="cert-stat-box">
+        <span class="cert-stat-num">2025</span>
+        <span class="cert-stat-label">Active</span>
+      </div>
+    </div>
+
+    <div class="cert-grid">
+
+      <div class="cert-card cert-highlight reveal">
+        <div class="cert-issuer-row">
+          <div class="cert-logo">INF</div>
+          <span class="cert-issuer-name">Infosys</span>
+        </div>
+        <div class="cert-name">Generative AI — No-Code Tools &amp; Applications</div>
+        <div class="cert-meta">
+          <span class="cert-date">Issued · 2025</span>
+          <span class="cert-badge">Completed</span>
+        </div>
+        <div class="cert-id">Generative AI · Prompt Engineering · No-Code Workflows</div>
+        <a href=https://drive.google.com/file/d/1JH51SysSYxTmeJRWqOW8CkV1C2GdA6ov/view?usp=drive_link class="cert-verify">Verify Credential →</a>
+      </div>
+
+      <div class="cert-card cert-highlight reveal">
+        <div class="cert-issuer-row">
+          <div class="cert-logo">GGL</div>
+          <span class="cert-issuer-name">Google · Coursera</span>
+        </div>
+        <div class="cert-name">Computer Networking: Bits &amp; Bytes</div>
+        <div class="cert-meta">
+          <span class="cert-date">Issued · 2025</span>
+          <span class="cert-badge">Completed</span>
+        </div>
+        <div class="cert-id">TCP/IP · DNS · Networking Fundamentals</div>
+        <a href=https://drive.google.com/file/d/1ZBVi-jL7uVIWJynVVMlmMFWA8c8NI4JR/view?usp=drive_link class="cert-verify">Verify Credential →</a>
+      </div>
+
+      <div class="cert-card cert-highlight reveal">
+        <div class="cert-issuer-row">
+          <div class="cert-logo">LPU</div>
+          <span class="cert-issuer-name">Summer Training Program </span>
+        </div>
+        <div class="cert-name">Mastering Data Structure and Algorithms &amp; Applications</div>
+        <div class="cert-meta">
+          <span class="cert-date">Issued · 2025</span>
+          <span class="cert-badge">Completed</span>
+        </div>
+        <div class="cert-id"> Integration of Data Structures and Algorithms in Real-Life Projects</div>
+        <a href=https://drive.google.com/file/d/1Zh8imDa-9VfU9_ngqZ1fn4rua3l8iDCQ/view?usp=drive_link class="cert-verify">Verify Credential →</a>
+      </div>
+
+      <div class="cert-card cert-highlight reveal">
+        <div class="cert-issuer-row">
+          <div class="cert-logo">NPTEL</div>
+          <span class="cert-issuer-name">NPTEL</span>
+        </div>
+        <div class="cert-name">Cloud Computing</div>
+        <div class="cert-meta">
+          <span class="cert-date">Issued · 2025</span>
+          <span class="cert-badge">Completed</span>
+        </div>
+        <div class="cert-id">Complete Working of Cloud Computing in Real-Life Applications </div>
+        <a href=https://drive.google.com/file/d/1hbO7a6uXf65pqBCwikec6VTW5YrqhHso/view?usp=drive_link class="cert-verify">Verify Credential →</a>
+      </div>
+      <div class="cert-card cert-highlight reveal">
+        <div class="cert-issuer-row">
+          <div class="cert-logo">INF</div>
+          <span class="cert-issuer-name">Infosys</span>
+        </div>
+        <div class="cert-name">Master Generative Al & Generative Al tools</div>
+        <div class="cert-meta">
+          <span class="cert-date">Issued · 2025</span>
+          <span class="cert-badge">Completed</span>
+        </div>
+        <div class="cert-id">In-Depth Study of AI Models, Generative AI Tools, and Large Language Models (LLMs)</div>
+        <a href=https://drive.google.com/file/d/14m1t8MIHaCJfEOd_xH0Hibu25LggWYI3/view?usp=drive_link class="cert-verify">Verify Credential →</a>
+      </div>
+      
+
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- ============================================================
+       CONTACT
+       ============================================================ -->
+  <section id="contact">
+
+    <div class="section-header reveal">
+      <div>
+        <span class="section-num">05 / CONTACT</span>
+        <h2 class="section-title">Get In Touch</h2>
+      </div>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="contact-grid">
+
+      <div class="contact-info reveal">
+        <h2>Let's build something intelligent together.</h2>
+        <p>Whether you have an interesting AI problem, want to discuss an opportunity, or just want to talk local LLMs and agents — I'm always open to a good conversation.</p>
+
+        <div class="contact-links">
+          <a href="mailto: amankt.3188@gmial.com" class="contact-link">
+            <div class="contact-link-icon">✉</div>
+            <div>
+              <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-muted);margin-bottom:2px">Email</div>
+              <div style="font-size:16px">amankt.3188@gmial.com</div>
+            </div>
+          </a>
+          <a href=https://www.linkedin.com/in/aman-thakur7704/ class="contact-link">
+            <div class="contact-link-icon">in</div>
+            <div>
+              <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-muted);margin-bottom:2px">LinkedIn</div>
+              <div style="font-size:16px">linkedin.com/aman-thakur7704</div>
+            </div>
+          </a>
+          <a href=https://github.com/QUANTUMVERSECODER class="contact-link">
+            <div class="contact-link-icon" style="font-family:monospace;font-size:14px">{ }</div>
+            <div>
+              <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-muted);margin-bottom:2px">GitHub</div>
+              <div style="font-size:16px">github.com/QUANTUMVERSECODER</div>
+            </div>
+          </a>
+          <a href="#" class="contact-link">
+            <div class="contact-link-icon" style="font-family:monospace;font-size:11px">🤖</div>
+            <div>
+              <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-muted);margin-bottom:2px">Focus</div>
+              <div style="font-size:16px">Local LLMs &amp; AI Agents</div>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <div class="reveal">
+        <div class="contact-form">
+          <div class="form-group">
+            <input type="text"  class="form-input"    placeholder="Your name"                                       id="fname">
+          </div>
+          <div class="form-group">
+            <input type="email" class="form-input"    placeholder="Your email address"                              id="femail">
+          </div>
+          <div class="form-group">
+            <input type="text"  class="form-input"    placeholder="Subject"                                         id="fsubject">
+          </div>
+          <div class="form-group">
+            <textarea           class="form-textarea" placeholder="Tell me about your project or opportunity..."    id="fmessage"></textarea>
+          </div>
+          <button class="form-submit" onclick="handleSubmit(event)">Send Message →</button>
+          <div class="form-success" id="formSuccess">✓ Message sent successfully! I'll be in touch soon.</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FOOTER
+       ============================================================ -->
+  <footer>
+    <div class="footer-copy">© 2025 <span>Aman Thakur</span> · AI/ML Engineer &amp; Data Scientist</div>
+    <div class="system-status-dashboard">
+      <div class="status-item"><span class="status-label">NODES</span><span class="status-val" id="nodeCount">04/04</span></div>
+      <div class="status-item"><span class="status-label">LATENCY</span><span class="status-val" id="latencyVal">12ms</span></div>
+      <div class="status-item"><span class="status-label">TEMP</span><span class="status-val" id="tempVal">42°C</span></div>
+      <div class="status-item"><span class="status-label">LLM_LOAD</span><span class="status-val" id="loadVal">LOW</span></div>
+      <div class="status-item"><span class="status-label">UPTIME</span><span class="status-val" id="uptimeVal">99.9%</span></div>
+    </div>
+    <div class="footer-copy" style="color:var(--red)">Built with curiosity. Shipped with purpose.</div>
+  </footer>
+
+  <!-- ============================================
+       AMAN-AI MINI-CHAT
+       ============================================ -->
+  <div class="ai-chat-widget" id="aiChat">
+    <div class="ai-chat-header">
+      <div class="ai-status-dot"></div>
+      <span class="ai-header-title">AMAN_AI :: Terminal</span>
+      <button class="ai-chat-close" id="aiClose">—</button>
+    </div>
+    <div class="ai-chat-body" id="aiChatBody">
+      <div class="ai-msg">Incoming connection... [OK]</div>
+      <div class="ai-msg">System initialized. Query me about projects, skills, or experience.</div>
+    </div>
+    <div class="ai-chat-input-wrap">
+      <span class="ai-prompt">></span>
+      <input type="text" class="ai-chat-input" id="aiInput" placeholder="Type a command (e.g., 'help')..." autocomplete="off">
+    </div>
+  </div>
+
+  <!-- CASE STUDY MODAL -->
+  <div class="case-study-modal" id="caseModal">
+    <div class="modal-close" onclick="closeCase()">CLOSE_VIEW [ESC]</div>
+    <div class="modal-content">
+      <div id="modalBody"></div>
+    </div>
+  </div>
+
+  <div class="ai-chat-trigger" id="aiTrigger" title="Open AMAN_AI Terminal">
+    <div class="ai-trigger-icon">🤖</div>
+  </div>
+
+  <!-- SECRET LABORATORY (HIDDEN BY DEFAULT) -->
+  <section id="secret-lab" style="display:none; padding: 100px 8vw; background: #050505; border-top: 1px solid #0f0;">
+    <div class="section-header">
+       <h2 style="color:#0f0; font-family:'JetBrains Mono'">[RESTRICTED_ACCESS] :: LABORATORY</h2>
+    </div>
+    <div class="lab-logs" style="font-family:'JetBrains Mono'; font-size:12px; color:#0f0; line-height:1.6; background:#000; padding:20px; border:1px solid #0f0;">
+       > Accessing raw telemetry...<br>
+       > Neural weights: [0.84, 0.22, 0.91, 0.35]<br>
+       > Model stability: 98.4%<br>
+       > System message: You have discovered the core logic.<br>
+       > This section is currently under development...
+    </div>
+  </section>
+
+  <!-- GLITCH OVERLAY -->
+  <div id="glitch-overlay" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; z-index:100000; background:rgba(0,10,0,0.2); pointer-events:none;"></div>
+
+  <!-- COGNITIVE LOG TRACE -->
+  <div class="cognitive-log" id="cognitiveLog"></div>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
